@@ -9,3 +9,12 @@
     font-weight: 600;
     display: inline-block;
 }
+
+.five-day {
+    border: none;
+}
+
+.date {
+    margin: 10px;
+    color: whitesmoke;
+}

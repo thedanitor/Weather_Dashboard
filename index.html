@@ -1,21 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="jumbotron jumbotron-fluid bg-dark">
-        <h1 class="display-4 heading">Weather Dashboard</h1>
+      <h1 class="display-4 heading">Weather Dashboard</h1>
     </div>
-
-
-
-
+    <div class="container outer col-12">
+      <div class="row">
+        <div class="search container col-3">
+          <div class="input-group mb-3">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search for a city"
+                aria-label="Recipient's username"
+                aria-describedby="button-addon2"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  id="button-addon2"
+                ></button>
+              </div>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item">City 1</li>
+            <li class="list-group-item">City 2</li>
+            <li class="list-group-item">City 3</li>
+            <li class="list-group-item">City 4</li>
+            <li class="list-group-item">City 5</li>
+          </ul>
+        </div>
+        <div class="results container col-9">
+          <div class="card current">
+            <div class="card-body">
+              <h2 class="card-title">City Name</h2>
+              <h6>Temperature:</h6>
+              <h6>Humidity:</h6>
+              <h6>Wind Speed:</h6>
+              <h6>UV Index:</h6>
+            </div>
+          </div>
+          <div class="card five-day">
+            <div class="card-body">
+              <h2 class="card-title">5 Day Forecast</h2>
+              <div class="row date-row">
+                <div class="card bg-primary date col-2 day-one">
+                  <h3 class="card-title">Date</h3>
+                  <img />
+                  <h6>Temp:</h6>
+                  <h6>Humidity:</h6>
+                </div>
+                <div class="card bg-primary date col-2 day-two">
+                  <h3 class="card-title">Date</h3>
+                  <img />
+                  <h6>Temp:</h6>
+                  <h6>Humidity:</h6>
+                </div>
+                <div class="card bg-primary date col-2 day-three">
+                  <h3 class="card-title">Date</h3>
+                  <img />
+                  <h6>Temp:</h6>
+                  <h6>Humidity:</h6>
+                </div>
+                <div class="card bg-primary date col-2 day-four">
+                  <h3 class="card-title">Date</h3>
+                  <img />
+                  <h6>Temp:</h6>
+                  <h6>Humidity:</h6>
+                </div>
+                <div class="card bg-primary date col-2 day-five">
+                  <h3 class="card-title">Date</h3>
+                  <img />
+                  <h6>Temp:</h6>
+                  <h6>Humidity:</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
