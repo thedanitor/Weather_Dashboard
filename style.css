@@ -1,0 +1,11 @@
+
+.jumbotron {
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.heading {
+    color: whitesmoke;
+    font-weight: 600;
+    display: inline-block;
+}
