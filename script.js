@@ -1,10 +1,13 @@
 //URL: api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
 //URL 5 day : api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
-
+//URL UV: http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
 
     
 
-
+var weathIcon = "";
+var weathIconSrc = "";
+var latNum = "";
+var longNum = "";
 var citySearch = "Seattle";
 var queryURL1 = "api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&appid=2f51e5636ace798720642f212b20ff1e";
 
@@ -33,5 +36,20 @@ $.ajax({
     weathIcon = (response.weather[0].icon);
     weathIconSrc = "http://openweathermap.org/img/w/" + weathIcon + ".png";
     $("#currIcon").attr("src", weathIconSrc);
+
+    latNum = (response.coord.lat);
+    longNum = (response.coord.lon);
+    var queryURLUV = "http://api.openweathermap.org/data/2.5/uvi?appid=2f51e5636ace798720642f212b20ff1e&lat=" + latNum + "&lon=" + longNum;
+
+    $.ajax({
+        url: queryURLUV,
+        method: "GET"
+    }).then(function(responseUV) {
+        console.log(responseUV);
+        console.log(responseUV.value);
+        console.log(responseUV.date_iso);
+        $("#currUV").text("UV Index: " + responseUV.value);
+    })
+
 })
 })
