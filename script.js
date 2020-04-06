@@ -24,7 +24,7 @@ $.ajax({
     console.log(response);
     console.log(response.name);
     console.log(response.main.temp);
-    tempF = ((response.main.temp -273.15) * 1.8 + 32);
+    tempF = ((response.main.temp -273.15) * 1.8 + 32).toFixed(1);
     console.log(tempF);
     console.log(response.main.humidity);
     console.log(response.wind.speed);
