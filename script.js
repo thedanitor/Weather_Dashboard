@@ -16,8 +16,22 @@ $.ajax({
     url: queryURL,
     method: "GET"
 }).then(function(response) {
+
+    
     console.log(response);
+    console.log(response.name);
+    console.log(response.main.temp);
+    tempF = ((response.main.temp -273.15) * 1.8 + 32);
+    console.log(tempF);
+    console.log(response.main.humidity);
+    console.log(response.wind.speed);
 
-
+    $("#currCity").text(response.name);
+    $("#currTemp").text("Temperature: " + tempF + " F");
+    $("#currHumidity").text("Humidity: " + response.main.humidity + " %");
+    $("#currWind").text("Wind Speed: " + response.wind.speed + " MPH");
+    weathIcon = (response.weather[0].icon);
+    weathIconSrc = "http://openweathermap.org/img/w/" + weathIcon + ".png";
+    $("#currIcon").attr("src", weathIconSrc);
 })
 })
