@@ -83,7 +83,21 @@ $.ajax({
         // console.log(responseUV.date_iso);
         // var UVdivEl = $("<div>", {"id": "UVdiv"});
         // UVdivEl.text(": " + UV);
+        if (UV <= 3) {
+            $("#UVbtn").removeClass();
+            $("#UVbtn").addClass("btn btn-success");
+        } 
+        if (UV <= 6 && UV > 3) {
+            $("#UVbtn").removeClass();
+            $("#UVbtn").addClass("btn btn-warning");
+        }
+        if (UV > 6) {
+            $("#UVbtn").removeClass();
+            $("#UVbtn").addClass("btn btn-danger");
+        };
         $("#UVbtn").text(UV);
+
+        //favorable 0-3  btn-success, moderate 3.1-6, severe 6.1+
     })
 
 })
