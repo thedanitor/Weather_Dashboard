@@ -31,7 +31,7 @@ var query5day = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearc
 // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=2f51e5636ace798720642f212b20ff1e"
 
 
-
+function makeAjaxCall (){
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -81,7 +81,7 @@ $.ajax({
 }).then(function(response5) {
 console.log(response5);
 // console.log(response5.list[0].dt);
-for (var i = 7; i <= 39; i = i + 8) {
+for (var i = 6; i <= 39; i = i + 8) {
 
 var a = new Date(response5.list[i].dt * 1000);
 year5 = a.getFullYear();
@@ -94,10 +94,10 @@ console.log(month5 + "/" + day5 + "/" + year5);
     weathIconSrc5 = "http://openweathermap.org/img/w/" + weathIcon + ".png";
     date5 = month5 + "/" + day5 + "/" + year5;
     var cardDiv = $("<div>").addClass("card bg-primary date lg-col-2 med-col-4 sm-col-6");
-    var date5El = $("<h4>").addClass("card-title");
+    var date5El = $("<h5>").addClass("card-title");
     var iconImg = $("<img>").attr({"src": weathIconSrc5, "alt": "Weather icon"});
-    var tempEl = $("<h6>");
-    var humidEl = $("<h6>");
+    var tempEl = $("<p>").addClass("text5day");
+    var humidEl = $("<p>").addClass("text5day");
     
     cardDiv.append(date5El, iconImg, tempEl, humidEl);
 
@@ -112,6 +112,8 @@ console.log(month5 + "/" + day5 + "/" + year5);
 }
 
 })
+};
+makeAjaxCall();
 
 $(".fa-search").on("click", function() {
 })

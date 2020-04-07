@@ -30,12 +30,13 @@ h2 {
 h3 {
     padding-left: 5px;
 }
-h4 {
-    padding: 5px 10px;
+h5 {
+    padding: 5px 10px 0px 10px;
 }
 
-h6 {
+.text5day {
     padding-left: 5px;
+    padding-right: 5px;
 }
 
 #UVbtn:hover {
