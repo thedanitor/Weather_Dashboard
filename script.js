@@ -51,7 +51,7 @@ $.ajax({
     windSpeed = response.wind.speed;
 
     $("#currCity").text(city + " " + dateCurr);
-    $("#currTemp").text("Temperature: " + tempF + " F");
+    $("#currTemp").text("Temperature: " + tempF + " \xB0F");
     $("#currHumidity").text("Humidity: " + humid + " %");
     $("#currWind").text("Wind Speed: " + windSpeed + " MPH");
     weathIcon = (response.weather[0].icon);
@@ -103,7 +103,7 @@ console.log(month5 + "/" + day5 + "/" + year5);
 
     $(".date-row").append(cardDiv);
     date5El.text(date5);
-    tempEl.text("Temp: " + temp5 + " F");
+    tempEl.text("Temp: " + temp5 + " \xB0F");
     humidEl.text("Humidity: " + humid5 + " %");
     // $("#icon1").attr("src", weathIconSrc5);
 
