@@ -22,3 +22,18 @@ img {
     height: 50px;
     width: 50px;
 }
+
+h4 {
+    padding: 5px;
+}
+
+#UVbtn:hover {
+    color: #fff !important;
+    background-color: #28a745 !important;
+    border: none !important;
+    text-decoration: none;
+    }
+
+    #UVbtn:focus {
+        outline: none;
+      }
