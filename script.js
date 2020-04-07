@@ -40,7 +40,7 @@ $.ajax({
     // console.log(response.dt);
     // console.log(response.dt * 1000);
     var realDate = new Date(response.dt * 1000);
-    console.log(realDate.getFullYear());
+    // console.log(realDate.getFullYear());
     yearCurr = realDate.getFullYear();
     monthCurr = (realDate.getMonth() + 1);
     dayCurr = realDate.getDate();
@@ -79,7 +79,7 @@ $.ajax({
     url: query5day,
     method: "GET"
 }).then(function(response5) {
-console.log(response5);
+// console.log(response5);
 // console.log(response5.list[0].dt);
 for (var i = 6; i <= 39; i = i + 8) {
 
@@ -105,10 +105,6 @@ console.log(month5 + "/" + day5 + "/" + year5);
     date5El.text(date5);
     tempEl.text("Temp: " + temp5 + " \xB0F");
     humidEl.text("Humidity: " + humid5 + " %");
-    // $("#icon1").attr("src", weathIconSrc5);
-
-
-//each day has 8 list items
 }
 
 })
@@ -116,4 +112,6 @@ console.log(month5 + "/" + day5 + "/" + year5);
 makeAjaxCall();
 
 $(".fa-search").on("click", function() {
+    $(".date-row").empty();
+    makeAjaxCall();
 })
