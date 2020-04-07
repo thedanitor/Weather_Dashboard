@@ -24,14 +24,26 @@ var weathIconSrc5 = "";
 var weathIconSrc = "";
 var latNum = "";
 var longNum = "";
+var cityList = [];
+var cityListItemEl = $("<li>").addClass("list-group-item");
+
+
 var citySearch = "Seattle";
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&appid=2f51e5636ace798720642f212b20ff1e";
-var query5day = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&appid=2f51e5636ace798720642f212b20ff1e";
+
+makeAjaxCall();
+// var citySearch = searchEl.val();
+
+
 
 // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=2f51e5636ace798720642f212b20ff1e"
 
 
 function makeAjaxCall (){
+    localStorage.getItem(citySearch);
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&appid=2f51e5636ace798720642f212b20ff1e";
+    var query5day = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&appid=2f51e5636ace798720642f212b20ff1e";
+
+
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -87,7 +99,7 @@ var a = new Date(response5.list[i].dt * 1000);
 year5 = a.getFullYear();
 month5 = a.getMonth() + 1;
 day5 = a.getDate();
-console.log(month5 + "/" + day5 + "/" + year5);
+// console.log(month5 + "/" + day5 + "/" + year5);
     temp5 = ((response5.list[i].main.temp -273.15) * 1.8 + 32).toFixed(1);
     humid5 = response5.list[i].main.humidity;
     weathIcon5 = (response5.list[i].weather[0].icon);
@@ -109,9 +121,23 @@ console.log(month5 + "/" + day5 + "/" + year5);
 
 })
 };
-makeAjaxCall();
 
-$(".fa-search").on("click", function() {
+
+function renderCityList (){
+    cityListItemEl.text(citySearch);
+    $(".list-group").prepend(cityListItemEl);
+};
+
+console.log(citySearch);
+$(".fa-search").on("click", function(event) {
+    event.preventDefault();
+    
+for (var i = 0; i <= cityListItemEl.length; i++){
     $(".date-row").empty();
+    citySearch = $(".form-control").val();
+    localStorage.setItem(cityListItemEl, citySearch);
+    renderCityList();
+    console.log(citySearch);
     makeAjaxCall();
+}
 })
