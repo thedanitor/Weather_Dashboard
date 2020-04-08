@@ -35,7 +35,7 @@ makeAjaxCall();
 // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=2f51e5636ace798720642f212b20ff1e"
 
 function makeAjaxCall() {
-  localStorage.getItem(citySearch);
+  localStorage.getItem("cityName");
   var queryURL =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
     citySearch +
@@ -108,7 +108,7 @@ function makeAjaxCall() {
     url: query5day,
     method: "GET",
   }).then(function (response5) {
-    // console.log(response5);
+    console.log(response5);
     // console.log(response5.list[0].dt);
     for (var i = 6; i <= 39; i = i + 8) {
       var a = new Date(response5.list[i].dt * 1000);
@@ -143,21 +143,24 @@ function makeAjaxCall() {
 }
 
 function renderCityList() {
-//     cityList.push(citySearch);
-//   cityListEl = cityList.join();
+    cityList.push(citySearch);
+  cityListEl = cityList.join();
+//   cityListItemEl = citySearch.text();
+$(".list-group").prepend(cityListEl);
 //   $(".list-group").prepend(cityListItemEl);
+
 }
 
 // console.log(citySearch);
 $(".fa-search").on("click", function (event) {
   event.preventDefault();
 
-  for (var i = 0; i < cityList.length; i++) {
+//   for (var i = 0; i < cityList.length; i++) {
     $(".date-row").empty();
     citySearch = $(".form-control").val();
-    localStorage.setItem(cityList, citySearch);
+    localStorage.setItem("cityName", JSON.stringify(cityList));
     renderCityList();
     console.log(cityList);
-    // makeAjaxCall();
-  }
+    makeAjaxCall();
+//   }
 });

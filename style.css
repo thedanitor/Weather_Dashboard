@@ -40,36 +40,14 @@ h5 {
     padding-right: 5px;
 }
 
-/* #UVbtn {
-    transition: none;
-    border: none;
-} */
-
 #UVdiv {
     display:inline-block;
-    /* color:#444;
-    border:1px solid #CCC;
-    background:#DDD;
-    /* box-shadow: 0 0 5px -1px rgba(0,0,0,0.2); */
-    /* cursor:pointer; */
-    background:blue;
     color: #fff;
     vertical-align:middle;
     max-width: 100px;
     height: 36px;
-    /* padding: 5px; */
     padding: .375rem .75rem;
     text-align: center;
     border-radius: .25rem;
 }
 
-/* #UVbtn:hover {
-    color: #fff !important;
-    background-color: #28a745 !important;
-    border: none !important;
-    text-decoration: none;
-    }
-
-    #UVbtn:focus {
-        outline: none;
-      } */
