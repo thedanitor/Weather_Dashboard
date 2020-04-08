@@ -24,6 +24,7 @@ var weathIconSrc = "";
 var latNum = "";
 var longNum = "";
 var cityList = [];
+var cityListNames = [];
 var cityListEl = $("list-group");
 var cityListItemEl = $("<li>").addClass("list-group-item");
 
@@ -35,7 +36,10 @@ makeAjaxCall();
 // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=2f51e5636ace798720642f212b20ff1e"
 
 function makeAjaxCall() {
-  localStorage.getItem("cityName");
+  cityListItemEl = localStorage.getItem("cityName");
+//   if (!cityListItemEl) { cityListItemEl = ''; }  // initialize if null
+//   cityListNames = cityListItemEl.split(",");
+
   var queryURL =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
     citySearch +
@@ -146,7 +150,7 @@ function renderCityList() {
     cityList.push(citySearch);
   cityListEl = cityList.join();
 //   cityListItemEl = citySearch.text();
-$(".list-group").prepend(cityListEl);
+$(".list-group").prepend(cityListItemEl);
 //   $(".list-group").prepend(cityListItemEl);
 
 }
