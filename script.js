@@ -1,12 +1,15 @@
 
 var cityList = JSON.parse(localStorage.getItem("cityName")) || [];
-var cityListNames = [];
+// var cityListNames = [];
 var cityListEl = $("list-group");
 
 if (cityList.length > 0) {
   renderCityList();
   makeAjaxCall(cityList[cityList.length - 1]);
-}
+} 
+// else {
+//   var cityList = ["Seattle"];
+// }
 
 function makeAjaxCall(citySearch) {
   var queryURL =
@@ -38,7 +41,12 @@ function makeAjaxCall(citySearch) {
     $("#currWind").text("Wind Speed: " + windSpeed + " MPH");
     var weathIcon = response.weather[0].icon;
     var weathIconSrc = "http://openweathermap.org/img/w/" + weathIcon + ".png";
-    $("#currIcon").attr("src", weathIconSrc);
+    var iconImg = $("<img>").attr({
+      src: weathIconSrc,
+      alt: "Weather icon",
+    });
+    $("#current").append(iconImg);
+  
 
     var latNum = response.coord.lat;
     var longNum = response.coord.lon;
@@ -53,15 +61,15 @@ function makeAjaxCall(citySearch) {
       method: "GET",
     }).then(function (responseUV) {
       var UV = responseUV.value;
-      if (UV <= 3) {
+      if (UV <= 4) {
         $("#UVdiv").removeClass();
         $("#UVdiv").addClass("bg-success");
       }
-      if (UV <= 6 && UV > 3) {
+      if (UV <= 8 && UV > 4) {
         $("#UVdiv").removeClass();
         $("#UVdiv").addClass("bg-warning");
       }
-      if (UV > 6) {
+      if (UV > 8) {
         $("#UVdiv").removeClass();
         $("#UVdiv").addClass("bg-danger");
       }
@@ -72,34 +80,34 @@ function makeAjaxCall(citySearch) {
   $.ajax({
     url: query5day,
     method: "GET",
-  }).then(function (response5) {
+  }).then(function (responseForecast) {
     for (var i = 6; i <= 39; i = i + 8) {
-      var a = new Date(response5.list[i].dt * 1000);
-      var year5 = a.getFullYear();
-      var month5 = a.getMonth() + 1;
-      var day5 = a.getDate();
-      var temp5 = ((response5.list[i].main.temp - 273.15) * 1.8 + 32).toFixed(1);
-      var humid5 = response5.list[i].main.humidity;
-      var weathIcon5 = response5.list[i].weather[0].icon;
-      var weathIconSrc5 = "http://openweathermap.org/img/w/" + weathIcon5 + ".png";
-      var date5 = month5 + "/" + day5 + "/" + year5;
+      var a = new Date(responseForecast.list[i].dt * 1000);
+      var yearForecast = a.getFullYear();
+      var monthForecast = a.getMonth() + 1;
+      var dayForecast = a.getDate();
+      var tempForecast = ((responseForecast.list[i].main.tempForecast - 273.15) * 1.8 + 32).toFixed(1);
+      var humidForecast = responseForecast.list[i].main.humidity;
+      var weathIconForecast = responseForecast.list[i].weather[0].icon;
+      var weathIconSrcForecast = "http://openweathermap.org/img/w/" + weathIconForecast + ".png";
+      var dateForecast = monthForecast + "/" + dayForecast + "/" + yearForecast;
       var cardDiv = $("<div>").addClass(
         "card bg-primary date lg-col-2 med-col-4 sm-col-6"
       );
-      var date5El = $("<h5>").addClass("card-title");
-      var iconImg = $("<img>").attr({
-        src: weathIconSrc5,
+      var dateForecastEl = $("<h5>").addClass("card-title");
+      var iconImgForecast = $("<img>").attr({
+        src: weathIconSrcForecast,
         alt: "Weather icon",
       });
-      var tempEl = $("<p>").addClass("text5day");
-      var humidEl = $("<p>").addClass("text5day");
+      var tempForecastEl = $("<p>").addClass("text5day");
+      var humidForecastEl = $("<p>").addClass("text5day");
 
-      cardDiv.append(date5El, iconImg, tempEl, humidEl);
+      cardDiv.append(dateForecastEl, iconImgForecast, tempForecastEl, humidForecastEl);
 
       $(".date-row").append(cardDiv);
-      date5El.text(date5);
-      tempEl.text("Temp: " + temp5 + " \xB0F");
-      humidEl.text("Humidity: " + humid5 + " %");
+      dateForecastEl.text(dateForecast);
+      tempForecastEl.text("Temp: " + tempForecast + " \xB0F");
+      humidForecastEl.text("Humidity: " + humidForecast + " %");
     }
   });
 }
