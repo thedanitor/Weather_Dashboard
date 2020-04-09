@@ -1,28 +1,4 @@
-//URL: api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
-//URL 5 day : api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
-//URL UV: http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
 
-// var city = "";
-// var dateCurr = "";
-// var yearCurr = "";
-// var monthCurr = "";
-// var dayCurr = "";
-// var year5 = "";
-// var month5 = "";
-// var day5 = "";
-// var date5 = "";
-// var tempF = "";
-// var tempF5 = "";
-// var humid = "";
-// var humid5 = "";
-// var windSpeed = "";
-// var UV = "";
-var weathIcon = "";
-var weathIcon5 = "";
-var weathIconSrc5 = "";
-var weathIconSrc = "";
-// var latNum = "";
-// var longNum = "";
 var cityList = JSON.parse(localStorage.getItem("cityName")) || [];
 var cityListNames = [];
 var cityListEl = $("list-group");
@@ -60,8 +36,8 @@ function makeAjaxCall(citySearch) {
     $("#currTemp").text("Temperature: " + tempF + " \xB0F");
     $("#currHumidity").text("Humidity: " + humid + " %");
     $("#currWind").text("Wind Speed: " + windSpeed + " MPH");
-    weathIcon = response.weather[0].icon;
-    weathIconSrc = "http://openweathermap.org/img/w/" + weathIcon + ".png";
+    var weathIcon = response.weather[0].icon;
+    var weathIconSrc = "http://openweathermap.org/img/w/" + weathIcon + ".png";
     $("#currIcon").attr("src", weathIconSrc);
 
     var latNum = response.coord.lat;
@@ -104,8 +80,8 @@ function makeAjaxCall(citySearch) {
       var day5 = a.getDate();
       var temp5 = ((response5.list[i].main.temp - 273.15) * 1.8 + 32).toFixed(1);
       var humid5 = response5.list[i].main.humidity;
-      weathIcon5 = response5.list[i].weather[0].icon;
-      weathIconSrc5 = "http://openweathermap.org/img/w/" + weathIcon + ".png";
+      var weathIcon5 = response5.list[i].weather[0].icon;
+      var weathIconSrc5 = "http://openweathermap.org/img/w/" + weathIcon5 + ".png";
       var date5 = month5 + "/" + day5 + "/" + year5;
       var cardDiv = $("<div>").addClass(
         "card bg-primary date lg-col-2 med-col-4 sm-col-6"
