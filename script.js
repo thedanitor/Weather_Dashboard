@@ -2,27 +2,27 @@
 //URL 5 day : api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
 //URL UV: http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
 
-var city = "";
-var dateCurr = "";
-var yearCurr = "";
-var monthCurr = "";
-var dayCurr = "";
-var year5 = "";
-var month5 = "";
-var day5 = "";
-var date5 = "";
-var tempF = "";
-var tempF5 = "";
-var humid = "";
-var humid5 = "";
-var windSpeed = "";
-var UV = "";
+// var city = "";
+// var dateCurr = "";
+// var yearCurr = "";
+// var monthCurr = "";
+// var dayCurr = "";
+// var year5 = "";
+// var month5 = "";
+// var day5 = "";
+// var date5 = "";
+// var tempF = "";
+// var tempF5 = "";
+// var humid = "";
+// var humid5 = "";
+// var windSpeed = "";
+// var UV = "";
 var weathIcon = "";
 var weathIcon5 = "";
 var weathIconSrc5 = "";
 var weathIconSrc = "";
-var latNum = "";
-var longNum = "";
+// var latNum = "";
+// var longNum = "";
 var cityList = JSON.parse(localStorage.getItem("cityName")) || [];
 var cityListNames = [];
 var cityListEl = $("list-group");
@@ -47,14 +47,14 @@ function makeAjaxCall(citySearch) {
     method: "GET",
   }).then(function (response) {
     var realDate = new Date(response.dt * 1000);
-    yearCurr = realDate.getFullYear();
-    monthCurr = realDate.getMonth() + 1;
-    dayCurr = realDate.getDate();
-    dateCurr = monthCurr + "/" + dayCurr + "/" + yearCurr;
-    city = response.name;
-    tempF = ((response.main.temp - 273.15) * 1.8 + 32).toFixed(1);
-    humid = response.main.humidity;
-    windSpeed = response.wind.speed;
+    var yearCurr = realDate.getFullYear();
+    var monthCurr = realDate.getMonth() + 1;
+    var dayCurr = realDate.getDate();
+    var dateCurr = monthCurr + "/" + dayCurr + "/" + yearCurr;
+    var city = response.name;
+    var tempF = ((response.main.temp - 273.15) * 1.8 + 32).toFixed(1);
+    var humid = response.main.humidity;
+    var windSpeed = response.wind.speed;
 
     $("#currCity").text(city + " " + dateCurr);
     $("#currTemp").text("Temperature: " + tempF + " \xB0F");
@@ -64,8 +64,8 @@ function makeAjaxCall(citySearch) {
     weathIconSrc = "http://openweathermap.org/img/w/" + weathIcon + ".png";
     $("#currIcon").attr("src", weathIconSrc);
 
-    latNum = response.coord.lat;
-    longNum = response.coord.lon;
+    var latNum = response.coord.lat;
+    var longNum = response.coord.lon;
     var queryURLUV =
       "http://api.openweathermap.org/data/2.5/uvi?appid=2f51e5636ace798720642f212b20ff1e&lat=" +
       latNum +
@@ -76,7 +76,7 @@ function makeAjaxCall(citySearch) {
       url: queryURLUV,
       method: "GET",
     }).then(function (responseUV) {
-      UV = responseUV.value;
+      var UV = responseUV.value;
       if (UV <= 3) {
         $("#UVdiv").removeClass();
         $("#UVdiv").addClass("bg-success");
@@ -99,14 +99,14 @@ function makeAjaxCall(citySearch) {
   }).then(function (response5) {
     for (var i = 6; i <= 39; i = i + 8) {
       var a = new Date(response5.list[i].dt * 1000);
-      year5 = a.getFullYear();
-      month5 = a.getMonth() + 1;
-      day5 = a.getDate();
-      temp5 = ((response5.list[i].main.temp - 273.15) * 1.8 + 32).toFixed(1);
-      humid5 = response5.list[i].main.humidity;
+      var year5 = a.getFullYear();
+      var month5 = a.getMonth() + 1;
+      var day5 = a.getDate();
+      var temp5 = ((response5.list[i].main.temp - 273.15) * 1.8 + 32).toFixed(1);
+      var humid5 = response5.list[i].main.humidity;
       weathIcon5 = response5.list[i].weather[0].icon;
       weathIconSrc5 = "http://openweathermap.org/img/w/" + weathIcon + ".png";
-      date5 = month5 + "/" + day5 + "/" + year5;
+      var date5 = month5 + "/" + day5 + "/" + year5;
       var cardDiv = $("<div>").addClass(
         "card bg-primary date lg-col-2 med-col-4 sm-col-6"
       );
