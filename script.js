@@ -23,23 +23,16 @@ var weathIconSrc5 = "";
 var weathIconSrc = "";
 var latNum = "";
 var longNum = "";
-var cityList = [];
+var cityList = JSON.parse(localStorage.getItem("cityName")) || [];
 var cityListNames = [];
 var cityListEl = $("list-group");
-var cityListItemEl = $("<li>").addClass("list-group-item");
 
-var citySearch = "Seattle";
+if (cityList.length > 0) {
+  renderCityList();
+  makeAjaxCall(cityList[cityList.length - 1]);
+}
 
-makeAjaxCall();
-// var citySearch = searchEl.val();
-
-// var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=2f51e5636ace798720642f212b20ff1e"
-
-function makeAjaxCall() {
-  cityListItemEl = localStorage.getItem("cityName");
-//   if (!cityListItemEl) { cityListItemEl = ''; }  // initialize if null
-//   cityListNames = cityListItemEl.split(",");
-
+function makeAjaxCall(citySearch) {
   var queryURL =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
     citySearch +
@@ -53,11 +46,7 @@ function makeAjaxCall() {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    // console.log(response);
-    // console.log(response.dt);
-    // console.log(response.dt * 1000);
     var realDate = new Date(response.dt * 1000);
-    // console.log(realDate.getFullYear());
     yearCurr = realDate.getFullYear();
     monthCurr = realDate.getMonth() + 1;
     dayCurr = realDate.getDate();
@@ -87,11 +76,7 @@ function makeAjaxCall() {
       url: queryURLUV,
       method: "GET",
     }).then(function (responseUV) {
-      // console.log(responseUV);
       UV = responseUV.value;
-      // console.log(responseUV.date_iso);
-      // var UVdivEl = $("<div>", {"id": "UVdiv"});
-      // UVdivEl.text(": " + UV);
       if (UV <= 3) {
         $("#UVdiv").removeClass();
         $("#UVdiv").addClass("bg-success");
@@ -112,14 +97,11 @@ function makeAjaxCall() {
     url: query5day,
     method: "GET",
   }).then(function (response5) {
-    console.log(response5);
-    // console.log(response5.list[0].dt);
     for (var i = 6; i <= 39; i = i + 8) {
       var a = new Date(response5.list[i].dt * 1000);
       year5 = a.getFullYear();
       month5 = a.getMonth() + 1;
       day5 = a.getDate();
-      // console.log(month5 + "/" + day5 + "/" + year5);
       temp5 = ((response5.list[i].main.temp - 273.15) * 1.8 + 32).toFixed(1);
       humid5 = response5.list[i].main.humidity;
       weathIcon5 = response5.list[i].weather[0].icon;
@@ -147,24 +129,29 @@ function makeAjaxCall() {
 }
 
 function renderCityList() {
-    cityList.push(citySearch);
-  cityListEl = cityList.join();
-//   cityListItemEl = citySearch.text();
-$(".list-group").prepend(cityListItemEl);
-//   $(".list-group").prepend(cityListItemEl);
-
+  $(".list-group").empty();
+  for (var i = 0; i < cityList.length; i++) {
+    cityListEl = cityList.join();
+    var cityListItemEl = $("<li>").addClass("list-group-item");
+    cityListItemEl.text(cityList[i]);
+    $(".list-group").prepend(cityListItemEl);
+  }
 }
+$(".list-group").on("click", "li", function (event) {
+  event.preventDefault();
+  $(".date-row").empty();
+  makeAjaxCall($(this).text());
+});
 
-// console.log(citySearch);
 $(".fa-search").on("click", function (event) {
   event.preventDefault();
-
-//   for (var i = 0; i < cityList.length; i++) {
-    $(".date-row").empty();
-    citySearch = $(".form-control").val();
+  $(".date-row").empty();
+  citySearch = $(".form-control").val();
+  if (cityList.indexOf(citySearch) === -1) {  //for when there is no citylist
+    cityList.push(citySearch);                //append to list
     localStorage.setItem("cityName", JSON.stringify(cityList));
-    renderCityList();
-    console.log(cityList);
-    makeAjaxCall();
-//   }
+  }
+
+  renderCityList();
+  makeAjaxCall(citySearch);
 });
