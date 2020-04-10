@@ -24,6 +24,7 @@ function makeAjaxCall(citySearch) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
+    $("#currentData").empty();
     var realDate = new Date(response.dt * 1000);
     var yearCurr = realDate.getFullYear();
     var monthCurr = realDate.getMonth() + 1;
@@ -38,6 +39,7 @@ function makeAjaxCall(citySearch) {
     var currTempEl = $("<h6>");
     var currHumidEl = $("<h6>");
     var currWindEl = $("<h6>");
+    var currentRow = $("<div>").attr("class", "row");
 
     currCityEl.text(city + " " + dateCurr);
     currTempEl.text("Temperature: " + tempF + " \xB0F");
@@ -55,8 +57,9 @@ function makeAjaxCall(citySearch) {
       alt: "Weather icon",
     });
     
-    $("#current").append(currCityEl, iconImg);
-    $("#current").after(currTempEl);
+    $("#currentData").append(currentRow)
+    currentRow.append(currCityEl, iconImg);
+    currentRow.after(currTempEl);
     currTempEl.after(currHumidEl);
     currHumidEl.after(currWindEl);
     
@@ -121,6 +124,14 @@ function makeAjaxCall(citySearch) {
     url: query5day,
     method: "GET",
   }).then(function (responseForecast) {
+    $("#forecast5Day").empty();
+    var title = $("<h2>").addClass("card-title");
+    title.text("5 Day Forecast");
+    $("#forecast5Day").prepend(title);
+    var dateRow = $("<div>").addClass("row date-row");
+    title.after(dateRow);
+
+
     for (var i = 6; i <= 39; i = i + 8) {
       var a = new Date(responseForecast.list[i].dt * 1000);
       var yearForecast = a.getFullYear();
@@ -131,6 +142,7 @@ function makeAjaxCall(citySearch) {
       var weathIconForecast = responseForecast.list[i].weather[0].icon;
       var weathIconSrcForecast = "http://openweathermap.org/img/w/" + weathIconForecast + ".png";
       var dateForecast = monthForecast + "/" + dayForecast + "/" + yearForecast;
+      
       var cardDiv = $("<div>").addClass(
         "card bg-primary date lg-col-2 med-col-4 sm-col-6"
       );
