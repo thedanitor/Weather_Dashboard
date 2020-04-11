@@ -2,13 +2,14 @@
 var cityList = JSON.parse(localStorage.getItem("cityName")) || [];
 var cityListEl = $("list-group");
 
-if (cityList.length > 0) {
-  renderCityList();
-  makeAjaxCall(cityList[cityList.length - 1]);
+if (cityList.length == 0) {
+  cityList = ["Seattle"];
+  makeAjaxCall(cityList);
 } 
-// else {
-//   var cityList = ["Seattle"];
-// }
+else {
+  makeAjaxCall(cityList[cityList.length - 1]);
+}
+renderCityList();
 
 function makeAjaxCall(citySearch) {
   var queryURL =
@@ -161,3 +162,4 @@ $(".fa-search").on("click", function (event) {
   renderCityList();
   makeAjaxCall(citySearch);
 });
+
