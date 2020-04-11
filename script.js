@@ -13,11 +13,11 @@ renderCityList();
 
 function makeAjaxCall(citySearch) {
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     citySearch +
     "&appid=2f51e5636ace798720642f212b20ff1e";
   var query5day =
-    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
     citySearch +
     "&appid=2f51e5636ace798720642f212b20ff1e";
 
@@ -47,7 +47,7 @@ function makeAjaxCall(citySearch) {
     currWindEl.text("Wind Speed: " + windSpeed + " MPH");
 
     var weathIcon = response.weather[0].icon;
-    var weathIconSrc = "http://openweathermap.org/img/w/" + weathIcon + ".png";
+    var weathIconSrc = "https://openweathermap.org/img/w/" + weathIcon + ".png";
     var iconImg = $("<img>").attr({
       src: weathIconSrc,
       alt: "Weather icon",
@@ -62,7 +62,7 @@ function makeAjaxCall(citySearch) {
     var latNum = response.coord.lat;
     var longNum = response.coord.lon;
     var queryURLUV =
-      "http://api.openweathermap.org/data/2.5/uvi?appid=2f51e5636ace798720642f212b20ff1e&lat=" +
+      "https://api.openweathermap.org/data/2.5/uvi?appid=2f51e5636ace798720642f212b20ff1e&lat=" +
       latNum +
       "&lon=" +
       longNum;
