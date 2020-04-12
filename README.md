@@ -20,21 +20,13 @@ When the website is loaded weather data is displayed for the most recently-searc
 
 Current weather data displayed is the city name, date, temperature, humidity, wind speed, UV index, and an icon with a graphical representation of the day's weather. The UV index number is color coded green, yellow, or red if conditions are considered favorable, moderate, or severe.
 
-
 <img src="demoImages/UVmild.png" alt="UV favorable" width="200px">
-
-![UV favorable](demoImages/UVmild.png)
-
-![UV moderate](demoImages/UVmed.png)
-
-![UV severe](demoImages/UVsevere.png)
-
-
-![5 day forecast](demoImages/fiveDayForecast.png)
+<img src="demoImages/UVmed.png" alt="UV moderate" width="200px">
+<img src="demoImages/UVsevere.png" alt="UV severe" width="200px">
 
 Also included is a five day forecast displaying the date, temperature, and humidity along with an icon.
 
-![Search Bar](demoImages/newSearch.png)
+![5 day forecast](demoImages/fiveDayForecast.png)
 
 There is a search bar in the top left corner which enables the user to find data for a different city once the search button is clicked. Then that city name is added to a list under the search bar. Once the city is added to the list it can be clicked on to display it's weather data again.
 
