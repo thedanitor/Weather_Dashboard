@@ -20,9 +20,9 @@ When the website is loaded weather data is displayed for the most recently-searc
 
 Current weather data displayed is the city name, date, temperature, humidity, wind speed, UV index, and an icon with a graphical representation of the day's weather. The UV index number is color coded green, yellow, or red if conditions are considered favorable, moderate, or severe.
 
-![UV favorable](demoImages/UVmild)
-![UV moderate](demoImages/UVmed)
-![UV severe](demoImages/UVsevere)
+![UV favorable](demoImages/UVmild.png)
+![UV moderate](demoImages/UVmed.png)
+![UV severe](demoImages/UVsevere.png)
 
 
 ![5 day forecast](demoImages/fiveDayForecast.png)
